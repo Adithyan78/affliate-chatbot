@@ -15,6 +15,7 @@ body {
   justify-content: center;
   min-height: 100vh;
   padding: 20px;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* Chat Container */
@@ -25,6 +26,7 @@ body {
   border-radius: 16px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
   padding: 20px;
+  transition: background-color 0.4s ease, border 0.4s ease;
 }
 
 /* Heading */
@@ -33,6 +35,7 @@ body {
   color: #66b2ff;
   margin-bottom: 15px;
   font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 /* Chat Box */
@@ -44,15 +47,19 @@ body {
   border-radius: 12px;
   margin-bottom: 15px;
   border: 1px solid #333;
+  transition: background-color 0.4s ease, border 0.4s ease;
 }
 
+/* Message Bubbles */
 .chat-box p {
-  margin-bottom: 10px;
-  padding: 10px 14px;
-  border-radius: 10px;
+  position: relative;
+  margin-bottom: 18px;
+  padding: 12px 16px;
+  border-radius: 14px;
   max-width: 80%;
   line-height: 1.5;
   word-wrap: break-word;
+  animation: fadeInUp 0.4s ease forwards;
 }
 
 /* User Message */
@@ -60,7 +67,20 @@ body {
   background-color: #4a90e2;
   color: #fff;
   margin-left: auto;
-  text-align: right;
+  text-align: left;
+  border-bottom-right-radius: 4px;
+}
+
+.user::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: 12px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-left: 8px solid #4a90e2;
+  border-bottom: 8px solid transparent;
 }
 
 /* Bot Message */
@@ -69,6 +89,19 @@ body {
   color: #c5f3c1;
   margin-right: auto;
   text-align: left;
+  border-bottom-left-radius: 4px;
+}
+
+.bot::after {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 12px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-right: 8px solid #3d3d3d;
+  border-bottom: 8px solid transparent;
 }
 
 /* Form */
@@ -77,6 +110,7 @@ form {
   gap: 10px;
 }
 
+/* Input */
 input[type="text"] {
   flex: 1;
   padding: 10px 15px;
@@ -86,6 +120,7 @@ input[type="text"] {
   color: #fff;
   outline: none;
   font-size: 1rem;
+  transition: background-color 0.3s ease, border 0.3s ease, color 0.3s ease;
 }
 
 input::placeholder {
@@ -101,23 +136,37 @@ button {
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
 }
 
 button:hover {
   background-color: #559de0;
 }
+
+/* Credits */
 .credit {
   text-align: center;
-  margin-top: 15px;
+  margin-top: 1px;
   font-size: 0.85rem;
   color: #aaa;
   border-top: 1px solid #333;
   padding-top: 10px;
 }
+.about {
+  text-align: center;
+  margin-top: 15px;
+  
+  font-size: 0.85rem;
+  color: #aaa;
+  border-top: 1px solid #333;
+  padding-top: 10px;
+  
+}
+
 .creators-link {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 5px;
+  padding-right: 10px;
   font-size: 0.9rem;
   color: #aaa;
 }
@@ -132,4 +181,93 @@ button:hover {
 .creators-link a:hover {
   color: #ffffff;
   text-decoration: underline;
+}
+
+/* Aggressive Theme */
+.aggressive-theme {
+  background-color: #1a1a1a;
+  color: #ff4c4c;
+}
+
+.aggressive-theme .chat-container {
+  border: 2px solid #ff4c4c;
+  box-shadow: 0 0 15px #ff4c4c;
+}
+
+.aggressive-theme h2 {
+  color: #ff4c4c;
+}
+
+.aggressive-theme .chat-box {
+  background-color: #2a2a2a;
+  border: 1px solid #ff4c4c;
+}
+
+.aggressive-theme input,
+.aggressive-theme button {
+  background-color: #2b2b2b;
+  color: #fff;
+  border: 1px solid #ff4c4c;
+}
+
+.aggressive-theme .user {
+  background-color: #ff4c4c;
+}
+
+.aggressive-theme .bot {
+  background-color: #222;
+  color: #ffa4a4;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+  font-style: italic;
+  color: #999;
+  padding: 6px 12px;
+  margin-bottom: 10px;
+  background-color: transparent;
+}
+.theme-toggle {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#toggle-theme {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+#toggle-theme:hover {
+  background-color: #666;
+}
+
+.aggressive-theme #toggle-theme {
+  background-color: #ff4c4c;
+  color: #000;
+}
+
+.aggressive-theme #toggle-theme:hover {
+  background-color: #ff6666;
 }
